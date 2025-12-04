@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>コンソール</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      /* 画面全体に iframe を広げるレイアウト */
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden; /* ページ側のスクロールは消す */
+        background: #000; /* 読み込み時のチラツキ防止用（任意） */
+      }
+
+      #app-frame {
+        border: none;
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 最初は何も読み込まない。JS で src をセットする -->
+    <iframe id="app-frame" src="about:blank" allowfullscreen></iframe>
+
+    <script>
+      (function () {
+        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwwgI7JqFV9UTxt7V1h6EL94rTV7_V4aZBmTiCy0peTyw61vV2CIsccY9bc9chGNiIjTw/exec';
+        const query = window.location.search || '';
+        const iframe = document.getElementById('app-frame');
+        iframe.src = GAS_WEB_APP_URL + query;
+      })();
+    </script>
+  </body>
+</html>
